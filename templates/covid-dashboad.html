@@ -1,0 +1,23 @@
+{% extends 'base.html'%}
+
+{% block title %}<title>Home</title>{% endblock title %}
+
+{% block content %}
+   <div class ="container" style='text-align: center'>
+       <p>อัพเดตล่าสุดเมื่อ {{data_updatedate}}</p>
+      {% if data1 %}
+        <p>ผู้ติดเชื้อปัจจุบัน</p><p style="font-size: 60px;color:rgb(121, 121, 235)">{{data1}}</p>
+      {% endif %}
+      {% if data2 %}
+        <p>หายป่วย</p><p style="font-size: 40px;color:rgb(195, 235, 121)">{{data2}}</p>
+      {% endif %}
+      {% if data3 %}
+        <p>รักษาในโรงพยาบาล</p><p style="font-size: 20px;color:rgb(88, 61, 19)">{{data3}}</p>
+      {% endif %}
+      {% if data4 %}
+        <p>ผู้เสียชีวิต</p><p style="font-size: 30px;color:rgb(48, 128, 113)">{{data4}}</p>
+      {% endif %}
+      {% if data5 %}
+        <p>รายใหม่</p><p style="font-size: 40px;color:rgb(231, 129, 82)">{{data5}}</p>
+      {% endif %}
+{% endblock content %} 

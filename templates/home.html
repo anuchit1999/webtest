@@ -1,0 +1,23 @@
+{% extends 'base.html'%}
+
+{% block title %}<title>Home</title>{% endblock title %}
+
+{% block content %}
+   <div class ="container" style='text-align: center'>
+        {% for i in Acourse %}
+        <div class="card text-center">
+         <div class="card-header">
+           {{i.title}}
+         </div>
+         <div class="card-body">
+           <h5 class="card-title">{{i.description}}</h5>
+           <a href="/post/{{i.id}}" class="btn btn-primary">See More</a>
+         </div>
+         <div class="card-footer text-muted">
+            {{i.date_created.strftime("%x")}}
+         </div>
+       </div>
+       <br>
+       {% endfor %}
+    </div>
+{% endblock content %} 

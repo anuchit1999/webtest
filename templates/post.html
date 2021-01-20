@@ -1,0 +1,24 @@
+{% extends 'base.html'%}
+
+{% block title %}<title>Home</title>{% endblock title %}
+
+{% block content %}
+   <div class ="container" style='text-align: center'>
+        {% if course %}
+        <div class="card text-white bg-dark mb-3">
+         <div class="card-header">{{course.title}}</div>
+         <div class="card-body">
+           <h5 class="card-title">Instructor : {{course.instructor}}</h5>
+           <p class="card-text">Description : {{course.description}}</p>
+           <p class="card-text">Price : {{course.price}}</p>
+           <p class="card-text">Duration : {{course.duration}}</p>
+           <p class="card-text">Date : {{course.date_created.strftime("%x")}}</p>
+           <div>
+            <a href="/update/{{course.id}}" class="btn btn-primary">Update</a>
+            <a href="/delete/{{course.id}}" class="btn btn-primary" onclick = "return confirm('แน่ใจหรือป่าว')">Delete</a>
+           </div>
+         </div>
+       </div>
+       {% endif %}
+    </div>
+{% endblock content %}

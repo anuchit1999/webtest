@@ -1,0 +1,22 @@
+{% extends 'base.html'%}
+
+{% block title %}<title>Home</title>{% endblock title %}
+
+{% block content %}
+   <div class ="container" style='text-align: center; background:rgb(176, 189, 189);margin-top: 500;margin-bottom: 50;margin-left: 50;margin-right: 50;'>
+       <br>
+       <div id="id1">กินอะไรดี</div>
+       <button type="button" class="btn btn-primary" onclick="menu_list()"> Random </button>
+       <button type="button" class="btn btn-primary" onclick="location.reload()">Random again</button>
+    </div>
+<script>
+function menu_list(){
+    var menu = document.getElementById("id1")
+    if(menu.innerHTML === "กินอะไรดี"){
+        menu.innerHTML = "{{menu_data}}";
+    }else{
+        menu.innerHTML = "Random again";
+    }
+}
+</script>
+{% endblock content %} 

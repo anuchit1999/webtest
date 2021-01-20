@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<head>
+    {% block title %}<title></title>{%endblock title%}
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/about2.css')}}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="{{url_for('home')}}">Nu</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{{url_for('home')}}">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{{url_for('create')}}">Create Course</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{url_for('about')}}">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{url_for('random_menu')}}">Random Menu</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Account
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  {% if current_user.is_authenticated %}
+                    <a class="dropdown-item" href="/logout">Log out</a>
+                  {% else %}
+                    <a class="dropdown-item" href="{{url_for('login')}}">Log in</a>
+                    <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="{{url_for('sign_up')}}">Sign up</a>
+                  {% endif %}
+                </div>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Covid-19
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="{{url_for('covid_dashboad')}}">Covid-19 Dasboads</a></li>
+                  <li><a class="dropdown-item" href="{{url_for('covid_table')}}">Covid-19 Table</a></li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" style="color: aqua; font-weight: bold;">
+                    {% if current_user.is_authenticated %}
+                 Hi {{ current_user.username }}!
+                    {% else %}
+                  Not logged in yet.
+                    {% endif %}
+                </a>
+            </li>
+            </ul>
+          </div>
+        </div>
+      </nav><br>
+
+      <div class='container' style="text-align: center;">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="alert alert-{{ category }}" role="alert">
+                {{ message }}
+              </div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+      </div>
+
+  {% block content %}
+
+  {% endblock content %}
+
+</body> 
+</html>
